@@ -1,8 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
-import { BackHandler, Button, ImageBackground, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, ImageBackground, StyleSheet, Text, TextInput, View } from 'react-native';
 
-export default function Authentification() {
- var email, pwd;
+export default function NewAccount() {
   return (
     <ImageBackground
     source={require("../assets/imgback1.png")} 
@@ -20,27 +19,21 @@ export default function Authentification() {
       
       <Text 
          style ={{
-          fontSize: 36,
+          fontSize: 30,
           color: "#fff",
           fontWeight: "bold" ,
           fontStyle: "italic",
          }}
       >
-        Welcome
+        Create new account
         </Text>
         <TextInput 
           keyboardType="email-address"
-          placeholder='email'
-          onChangeText={(ch)=>{
-            email = ch;
-          }} 
+          placeholder='Email' 
           style = {styles.TextInput}>
         </TextInput>
-        <TextInput secureTextEntry={true} placeholder='password' 
-             onChangeText={(ch)=>{
-              pwd = ch;
-            }} 
-            style = {styles.TextInput}></TextInput>
+        <TextInput secureTextEntry={true} placeholder="Password" style = {styles.TextInput}></TextInput>
+        <TextInput secureTextEntry={true} placeholder="Confirm Password" style = {styles.TextInput}></TextInput>
         <View 
           style = {{
           flexDirection : "row",
@@ -49,25 +42,10 @@ export default function Authentification() {
           width : "55%",
           justifyContent : "space-evenly"
           }}>
-          <Button title='Sign in'
-              onPress={()=>{
-                alert(email + pwd);
-              }}></Button>
-          <Button title='Quit' 
-              onPress={() => {
-                BackHandler.exitApp(); //close the app
-              }}></Button>
+          <Button title='sign up'></Button>
+          <Button title='Quit'></Button>
         </View>
-        <Text 
-          style = {{
-            width : "95%",
-            textAlign : "right",
-            fontSize : 14,
-            fontStyle : "italic",
-            fontWeight : "bold",
-            color : "white",
-            marginTop : 15}}>
-            Create new account</Text>
+
       <StatusBar style="light" />
       </View>
     </ImageBackground>
