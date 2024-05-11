@@ -1,9 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { BackHandler, Button, ImageBackground, StyleSheet, Text, TextInput, View } from 'react-native';
 
-export default function Authentification() {
+export default function Authentification({navigation}) {
  var email, pwd;
-  return (
+
+ return (
     <ImageBackground
     source={require("../assets/imgback1.png")} 
     style={styles.container}>
@@ -53,21 +54,27 @@ export default function Authentification() {
               onPress={()=>{
                 alert(email + pwd);
               }}></Button>
+              
           <Button title='Quit' 
               onPress={() => {
                 BackHandler.exitApp(); //close the app
               }}></Button>
         </View>
         <Text 
-          style = {{
-            width : "95%",
-            textAlign : "right",
-            fontSize : 14,
-            fontStyle : "italic",
-            fontWeight : "bold",
-            color : "white",
-            marginTop : 15}}>
-            Create new account</Text>
+        onPress={() => {
+          navigation.navigate("newaccount");
+        }}
+        style = {{
+          width : "95%",
+          textAlign : "right",
+          fontSize : 14,
+          fontStyle : "italic",
+          fontWeight : "bold",
+          color : "white",
+          marginTop : 15
+                  }}>
+            Create new account
+         </Text>
       <StatusBar style="light" />
       </View>
     </ImageBackground>

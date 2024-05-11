@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { Button, ImageBackground, StyleSheet, Text, TextInput, View } from 'react-native';
 
-export default function NewAccount() {
+export default function NewAccount({navigation}) {
   return (
     <ImageBackground
     source={require("../assets/imgback1.png")} 
@@ -43,7 +43,11 @@ export default function NewAccount() {
           justifyContent : "space-evenly"
           }}>
           <Button title='sign up'></Button>
-          <Button title='Quit'></Button>
+          <Button 
+           onPress={() => {
+            navigation.goBack();
+          }}
+          title='Back'></Button>
         </View>
 
       <StatusBar style="light" />
