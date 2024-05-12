@@ -1,10 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { BackHandler, Button, ImageBackground, StyleSheet, Text, TextInput, View } from 'react-native';
+import firebase from '../Config';
+import { useState } from 'react';
+const auth = firebase.auth();
 
 export default function Authentification({navigation}) {
- var email, pwd;
-
- return (
+ const [email, setemail] = useState("test@mail.com");
+ const [pwd, setpwd] = useState("12345678");
+  return (
     <ImageBackground
     source={require("../assets/imgback1.png")} 
     style={styles.container}>
@@ -33,13 +36,14 @@ export default function Authentification({navigation}) {
           keyboardType="email-address"
           placeholder='email'
           onChangeText={(ch)=>{
-            email = ch;
+            setEmail(ch);
           }} 
           style = {styles.TextInput}>
         </TextInput>
         <TextInput secureTextEntry={true} placeholder='password' 
              onChangeText={(ch)=>{
-              pwd = ch;
+              setp
+              setPwd(ch)
             }} 
             style = {styles.TextInput}></TextInput>
         <View 
@@ -52,9 +56,11 @@ export default function Authentification({navigation}) {
           }}>
           <Button title='Sign in'
               onPress={()=>{
-                alert(email + pwd);
+               auth.signInWithEmailAndPassword(email,pwd)
+               .then(()=> {navigation.navigate("accueil");})
+               .catch((err)=> {alert(err);});
               }}></Button>
-              
+
           <Button title='Quit' 
               onPress={() => {
                 BackHandler.exitApp(); //close the app

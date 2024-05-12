@@ -1,7 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { Button, ImageBackground, StyleSheet, Text, TextInput, View } from 'react-native';
+import firebase from '../Config';
 
+const auth = firebase.auth();
 export default function NewAccount({navigation}) {
+var email,pwd,confirmpwd;
+
   return (
     <ImageBackground
     source={require("../assets/imgback1.png")} 
@@ -28,12 +32,21 @@ export default function NewAccount({navigation}) {
         Create new account
         </Text>
         <TextInput 
+          onChangeText={(ch)=>{ email = ch; }}
           keyboardType="email-address"
           placeholder='Email' 
           style = {styles.TextInput}>
         </TextInput>
-        <TextInput secureTextEntry={true} placeholder="Password" style = {styles.TextInput}></TextInput>
-        <TextInput secureTextEntry={true} placeholder="Confirm Password" style = {styles.TextInput}></TextInput>
+        <TextInput
+          onChangeText={(ch)=>{ pwd = ch; }}
+          secureTextEntry={true} 
+          placeholder="Password" 
+          style = {styles.TextInput}></TextInput>
+        <TextInput 
+          onChangeText={(ch)=>{ confirmpwd = ch; }}
+          secureTextEntry={true} 
+          placeholder="Confirm Password" 
+          style = {styles.TextInput}></TextInput>
         <View 
           style = {{
           flexDirection : "row",
@@ -42,14 +55,26 @@ export default function NewAccount({navigation}) {
           width : "55%",
           justifyContent : "space-evenly"
           }}>
-          <Button title='sign up'></Button>
+          <Button 
+          onPress={() => {
+            if (pwd === confirmpwd && pwd.length >= 6)
+              {
+                  auth.createUserWithEmailAndPassword(email,pwd)
+                    .then(()=>{navigation.replace("accueil");})
+                    .catch((err)=>{alert(err);});
+              }
+            else
+             {
+              alert("Verify password");
+            }
+          }}
+          title='sign up'></Button>
           <Button 
            onPress={() => {
             navigation.goBack();
           }}
           title='Back'></Button>
         </View>
-
       <StatusBar style="light" />
       </View>
     </ImageBackground>
