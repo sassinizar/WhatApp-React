@@ -9,7 +9,10 @@ import {
   TouchableHighlight,
   TouchableOpacity,
 } from "react-native";
- 
+
+import firebase from "../../Config"; 
+const database=firebase.database();
+
 export default function MyAccount() {
   const [name, setname] = useState();
   const [firstname, setfirstname] = useState();
@@ -72,7 +75,19 @@ export default function MyAccount() {
         placeholder="Pseudo"
         style={styles.textinputstyle}
       ></TextInput>
-      <TouchableHighlight
+      <TouchableOpacity
+        onPress={()=>{
+          const Profils = database.ref("Profils");
+          const key = Profils.push().key;
+          const Profil = Profils.child("Profil"+key);
+                Profil.set({
+                   name,
+                   firstname,
+                   phone,
+                   pseudo
+                });
+        }}
+
         disabled={false}
         activeOpacity={0.5}
         underlayColor="#DDDDDD"
@@ -99,7 +114,7 @@ export default function MyAccount() {
         >
           Save
         </Text>
-      </TouchableHighlight>
+      </TouchableOpacity>
     </ImageBackground>
   );
 }
