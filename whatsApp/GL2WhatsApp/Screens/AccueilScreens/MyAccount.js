@@ -26,7 +26,7 @@ export default function MyAccount() {
     >
       <StatusBar style="dark" />
       <Text style={styles.textstyle} >Profile</Text>
-      <TouchableOpacity onPress={() => {}}>
+      <TouchableOpacity>
         <Image
           source={require("../../assets/agent.webp")}
           style={{

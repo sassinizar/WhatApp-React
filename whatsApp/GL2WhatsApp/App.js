@@ -4,6 +4,7 @@ import React from 'react';
 import Authentification from './Screens/Authentification';
 import NewAccount from './Screens/NewAccount';
 import Accueil from './Screens/Accueil';
+import Chat from './Screens/Chat';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,7 @@ export default function App() {
          options={{headerShown : true, title : "Back"}}
        ></Stack.Screen>
       <Stack.Screen name = "accueil" component={Accueil}></Stack.Screen>
+      <Stack.Screen name = "chat" component={Chat}></Stack.Screen>
     </Stack.Navigator>
 </NavigationContainer>
   );

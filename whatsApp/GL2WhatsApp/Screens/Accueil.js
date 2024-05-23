@@ -15,7 +15,7 @@ export default function Accueil() {
         inactiveColor="#3e2465"
         barStyle={{ backgroundColor: '#691fad' }}
             >
-      <Tab.Screen name="listprofils" component={ListProfils}></Tab.Screen>
+      <Tab.Screen name="listprofils" component={ListProfils} options={{headerShown : true, title : "List of Profils"}}></Tab.Screen>
       <Tab.Screen name="myaccount" component={MyAccount}></Tab.Screen>
       <Tab.Screen name="groups" component={Groups}></Tab.Screen>
     </Tab.Navigator>
